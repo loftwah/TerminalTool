@@ -37,3 +37,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.name
+
+class Book(models.Model):
+    """Model for books"""
+    title = models.CharField(max_length=300, unique=True)
+    author = models.CharField(max_length=200)
+    volume = models.IntegerField(null=True, blank=True)
+    language = models.CharField(max_length=2)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
